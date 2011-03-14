@@ -1,0 +1,10 @@
+Este es un mensaje de confirmación del sistema de votación PollXpress del Partido
+Pirata. Usted, {{ person.name }}, ha recibido este correo porque ha
+participado en la votación "{{ result.poll.query.name }}".
+
+Usted ha votado: "{{ result.option.name }}"
+
+
+Muchísimas gracias por participar en la votación,
+
+El equipo de PollXpress

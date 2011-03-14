@@ -1,0 +1,19 @@
+Este es un mensaje del sistema de votación PollXpress del Partido
+Pirata. Usted, {{ person.name }}, ha recibido este correo porque nos gustaría que
+participara en la votación que le indicamos a continuación.
+Para votar sólo tiene que elegir el enlace a la propuesta que más
+le guste y recibirá un correo de confirmación.
+
+{{ poll.query.name }}
+{{ poll.query.description }}
+
+Opciones ({{ ballots|length}} en total):
+{% for item in ballots %}
+{{forloop.counter}}.- {{ item.option.name }}
+{{ item.option.description}}
+http://localhost/vote/{{ item.uid }}
+{% endfor %}
+
+Muchísimas gracias por su atención,
+
+El equipo de PollXpress
