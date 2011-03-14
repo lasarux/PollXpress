@@ -104,14 +104,14 @@ class Poll(models.Model):
     def __unicode__(self):
         return "%s@%s - %s" % (self.query, self.space, self.date_published.strftime("%d/%M/Y %H:%M"))
         
-    def reset_poll(poll, space):
+    def reset(self):
         # reset result in options
-        options = Option.objects.filter(poll=poll)
-        for i in options:
-            i.result = 0
+        results = self.result_set.all()
+        for i in results:
+            i.votes = 0
             i.save()
         # mark ballots as not done
-        ballots = Ballot.objects.filter(option__poll=poll, space=space)
+        ballots = Ballot.objects.filter(result__poll=self.id)
         for i in ballots:
             i.done = False
             i.save()
@@ -158,4 +158,4 @@ class Ballot(models.Model):
 
 
     def __unicode__(self):
-        return "%s: %s@%s" % (self.uid, self.option.name, self.option.poll.name)
+        return "%s: %s@%s" % (self.uid, self.result.option.name, self.result.poll.query.name)

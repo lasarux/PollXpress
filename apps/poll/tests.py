@@ -68,3 +68,13 @@ class QueryTestCase(TestCase):
         # we can't vote again
         for result in results:
             self.assertFalse(result.ballot_set.all()[0].countit()) # ballots have been used
+            
+        # reset poll
+        self.assertEqual(self.query_one.poll_set.all()[0].reset(), None)
+        results = self.query_one.poll_set.all()[0].result_set.all() # refresh results
+        self.assertEqual(results[0].votes, 0)
+        self.assertEqual(results[1].votes, 0)
+        self.assertEqual(results[2].votes, 0)
+        for ballot in results[0].ballot_set.all():
+            self.assertFalse(ballot.done) # done?
+        
