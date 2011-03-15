@@ -7,6 +7,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Example:
+
+    (r'^$', 'apps.poll.views.index'),
     (r'^vote/', include('apps.poll.urls')),
     
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {

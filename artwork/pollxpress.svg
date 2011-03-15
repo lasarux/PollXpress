@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="427.45184"
-   height="84.615189"
+   width="450"
+   height="100"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.1 r9760"
@@ -31,6 +31,32 @@
          offset="1"
          id="stop3784" />
     </linearGradient>
+    <filter
+       inkscape:collect="always"
+       id="filter3804"
+       x="-0.12106446"
+       width="1.2421288"
+       y="-0.1189541"
+       height="1.2379082"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="3.5180252"
+         id="feGaussianBlur3806" />
+    </filter>
+    <filter
+       inkscape:collect="always"
+       id="filter3820"
+       x="-0.12740625"
+       width="1.2548125"
+       y="-0.11340751"
+       height="1.226815"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="2.4613824"
+         id="feGaussianBlur3822" />
+    </filter>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -40,8 +66,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.887932"
-     inkscape:cx="213.72592"
-     inkscape:cy="43.243593"
+     inkscape:cx="288.78185"
+     inkscape:cy="42.307594"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -72,36 +98,36 @@
      inkscape:label="Capa 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-176.1481,-339.77336)">
+     transform="translate(-176.1481,-324.38855)">
     <rect
-       style="fill:none;stroke:#009087;stroke-width:5.27683401;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       style="fill:none;stroke:#009087;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
        id="rect3817"
        width="69.741859"
        height="70.979149"
-       x="315.00406"
-       y="342.41177"
-       rx="4.9584389"
-       ry="5.0464067" />
+       x="328.24606"
+       y="339.23367"
+       rx="8.2244835"
+       ry="8.2244835" />
     <text
        xml:space="preserve"
        style="font-size:85.35779572px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Coolvetica;-inkscape-font-specification:Coolvetica"
-       x="175.97739"
-       y="408.51199"
+       x="189.21939"
+       y="405.33389"
        id="text3763"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3765"
-         x="175.97739"
-         y="408.51199">Poll    press </tspan></text>
+         x="189.21939"
+         y="405.33389">Poll    press </tspan></text>
     <text
        sodipodi:linespacing="125%"
        id="text3863"
-       y="403.94598"
-       x="326.80353"
+       y="400.76788"
+       x="340.04553"
        style="font-size:72.4468689px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Coolvetica;-inkscape-font-specification:Coolvetica"
        xml:space="preserve"><tspan
-         y="403.94598"
-         x="326.80353"
+         y="400.76788"
+         x="340.04553"
          id="tspan3865"
          sodipodi:role="line"><tspan
            id="tspan3867"
@@ -120,5 +146,29 @@
          id="tspan3911"
          x="103.14046"
          y="94.476959" /></text>
+    <rect
+       ry="8.2244835"
+       rx="8.2244835"
+       y="339.23367"
+       x="328.24606"
+       height="70.979149"
+       width="69.741859"
+       id="rect3802"
+       style="fill:none;stroke:#009087;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter3804)" />
+    <text
+       xml:space="preserve"
+       style="font-size:72.4468689px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;filter:url(#filter3820);font-family:Coolvetica;-inkscape-font-specification:Coolvetica"
+       x="340.04553"
+       y="400.76788"
+       id="text3808"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3810"
+         x="340.04553"
+         y="400.76788"><tspan
+           style="fill:#ffffff;fill-opacity:1"
+           id="tspan3812"><tspan
+             id="tspan3814"
+             style="fill:#009087;fill-opacity:1">X </tspan></tspan></tspan></text>
   </g>
 </svg>

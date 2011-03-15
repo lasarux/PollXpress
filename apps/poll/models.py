@@ -21,6 +21,7 @@ class Query(models.Model):
     def generate_ballots(self, space=False, date_finish=datetime.datetime.now()+datetime.timedelta(1)): # default is one day
         """This function generates valid ballots for a votation"""
         options = Option.objects.filter(query=self)
+        bad_emails = []
         if not options or not space:
             return False # query with no options
         
@@ -56,8 +57,16 @@ class Query(models.Model):
                     ballot.sent = True
                     ballot.save()
             except:
-                pass # to sent a warning mail to admin
-
+                # to sent a warning mail to admin
+                bad_emails.append(i)
+                
+        # send a list with bad emails to admin
+        t = loader.get_template('ballot_bad_emails.txt')
+        c = Context({'persons': bad_emails, 'space': space, 'name': self.name})
+        message = t.render(c)
+        email = EmailMessage('PollXpress: %s - Correos con problemas' % poll.query.name, 
+            message, 'pollxpress@partidopirata.es', [space.admin.email])
+        email.send()
         return True
 
 # TODO: better statistics (gender, region, age...)

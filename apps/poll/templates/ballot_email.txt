@@ -9,8 +9,8 @@ le guste y recibirá un correo de confirmación.
 
 Opciones ({{ ballots|length}} en total):
 {% for item in ballots %}
-{{forloop.counter}}.- {{ item.option.name }}
-{{ item.option.description}}
+{{forloop.counter}}.- {{ item.result.option.name }}
+{{ item.result.option.description}}
 http://localhost/vote/{{ item.uid }}
 {% endfor %}
 
