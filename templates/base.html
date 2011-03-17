@@ -1,15 +1,72 @@
-{% load i18n %}<!DOCTYPE html>
-<html lang="en">
+{% load i18n %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>PollXpress - VotaciónXpress</title>
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/reset.css" />
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/text.css" />
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/960.css" />
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PollXpress</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="{{ MEDIA_URL }}css/default.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<h1>{% trans "Thank you for voting!" %}</h1>
-
-<!-- end .container_16 -->
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#"><img src="{{ MEDIA_URL}}images/pollxpress.png"</a></h1>
+			<h2><a>By Partido Pirata</a></h2>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="/">{% trans "Home" %}</a></li>
+				<li><a href="#">{% trans "Querys" %}</a></li>
+				<li><a href="#">{% trans "Polls" %}</a></li>
+                <li><a href="{% url space-list %}">{% trans "Spaces" %}</a></li>
+                <li><a href="#">{% trans "People" %}</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="page">
+		<div id="page-bgtop">
+			<div id="content">
+                {% block content %}{% endblock %}
+			</div>
+			<div id="sidebar">
+				<ul><!--
+					<li id="search">
+						<h2>{% trans "Search" %}</h2>
+						<form method="get" action="#">
+							<fieldset>
+								<input type="text" id="seach-text" name="s" value="" />
+								<input type="submit" id="search-submit" value="Search" />
+							</fieldset>
+						</form>
+					</li>
+                    -->
+					<li>
+						<h2>{% trans "Hot Polls" %}</h2>
+						<ul>
+                            {% for item in poll %}
+                            <li><a href="#">item.query.name</a></li>
+                            {% empty %}
+                            <li>{% trans "Today there is nothing" %}</li>
+                            {% endfor %}
+						</ul>
+					</li>
+					<li>
+						<h2>{% trans "Last Results" %}</h2>
+						<ul>
+							{% for item in results %}
+                            <li><a href="#">item.query.name</a></li>
+                            {% empty %}
+                            <li>{% trans "Empty" %}</li>
+                            {% endfor %}
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+	</div>
+</div>
+<div id="footer"><div class="fleft"><p>Copyleft 2011 - Partido Pirata</p></div><div class="fclear"></div></div>
 </body>
 </html>

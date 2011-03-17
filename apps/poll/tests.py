@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.core import mail
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from models import Query, Option, Person, Poll, Ballot, Space
 
 class SpaceTestCase(TestCase):
@@ -86,5 +87,16 @@ class QueryTestCase(TestCase):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
 
+    def test_spaces(self):
+        response = self.client.get(reverse('space-list'))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('space-add'))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('space-item'))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('space-delete'))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('space-edit'))
+        self.assertEqual(response.status_code, 200)
 
         

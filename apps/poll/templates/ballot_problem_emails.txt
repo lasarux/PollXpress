@@ -1,0 +1,14 @@
+Este es un mensaje del sistema de votación PollXpress del Partido
+Pirata. Usted, {{ poll.space.admin.name }}, ha recibido este correo porque es el
+administrador del Espacio "{{ space.name }}" y ha creado la votación
+"{{ name }}".
+
+{% for item in bad_emails %}{% if forloop.first %}Ha habido un problema con las siguientes personas:{% endif}
+{{ person.name }}: {{ person.email}}    
+{% empty %}
+La creación de la encuesta y el envio de las papeletes ha sido correcto.
+{% endfor %}
+
+Muchísimas gracias por su atención,
+
+PollXpress

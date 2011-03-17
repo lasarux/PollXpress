@@ -1,0 +1,78 @@
+.fleft {float:left}
+.fright {float:right}
+.fcenter {float:none;text-align:center}
+.fclear {clear:both}
+.inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
+body {margin-top:40px;background:#fff;text-align:justify;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#757E82}
+* {margin:0;padding:0}
+h1, h2, h3 {color:#009087}
+h1 {margin-bottom: 20px;}
+h2 {}
+h3 {}
+p, blockquote, ul, ol {margin-bottom:20px;line-height:2em}
+p {}
+blockquote {}
+ul, ol, li {margin:0;padding:0;list-style:none}
+a {text-decoration:underline;color:#EF8116}
+a:hover {text-decoration:none;color:#EF8116}
+/* Wrapper */
+#wrapper {}
+/* Header */
+#header {width:892px;height:91px;margin:0 auto}
+/* Logo */
+#logo {float:left;width:270px;height:76px;margin:0;padding:15px 0 0 30px}
+#logo h1 {margin:0;padding:0;font:normal 36px Georgia, "Times New Roman",Times,serif}
+#logo h2 {margin:-2px 0 0 0;padding:0;text-transform:uppercase;letter-spacing:2px;font-size:10px;font-weight:bold;color:#444}
+#logo h2 a {color:#9AA9B1}
+#logo a {text-decoration:none;color:#3C84B3}
+/* Menu */
+#menu {float:right;width:592px;height:54px;margin-top:10px;background:url(/media/images/img01.jpg) no-repeat left top}
+#menu ul {margin:0;padding:0 0 0 20px;list-style:none;line-height:normal;margin-left:30px}
+#menu li {display:inline;text-align:center}
+#menu a {display:block;float:left;height:36px;padding:18px 20px 0 20px;text-decoration:none;text-align:center;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#464E53}
+#menu a:hover, #menu .active a {background:#009087;color:#fff}
+/* Search */
+#search {height:45px;padding:0 0 40px 0}
+#search form {margin:0;padding:12px 0 0 0}
+#search fieldset {margin:0;padding:0;border:none}
+#search input {float:left;font:12px Georgia, "Times New Roman",Times,serif}
+#search-text {width:120px;height:18px;padding:3px 0 0 5px;border:1px solid #000;color:#000}
+#search-submit {height:21px;margin-left:10px;padding:0 2px;border:none;background:#000;color:#fff}
+/* Page */
+#page {width:892px;margin:0 auto}
+#page-bgtop {padding:0 30px}
+/* Content */
+#content {float:right;width:564px;padding-top:30px}
+.post {margin:0 0 30px 0}
+.post .title {margin:0;padding:0 0 5px 0;color:#232F01}
+.post .title a {padding:4px 35px 4px 15px;background:#EF8116;text-decoration:none;font-weight:normal;color:#fff}
+.post .entry {}
+.post img {float:left;padding:15px 0}
+.post .meta {text-align:right;padding-top:20px;border-bottom:1px solid #E5E5E5;font-weight:bold;color:#202020}
+.post .byline {float:right;margin-top:-30px;font-size:12px;color:#5E5E5E}
+/* Sidebar */
+#sidebar {float:left;width:208px;padding-top:30px}
+#sidebar ul {margin:0;padding:0;list-style:none;line-height:normal}
+#sidebar li {margin-bottom:1px}
+#sidebar li ul {margin:0;padding:0 0 40px 0}
+#sidebar li li {margin:0;padding:9px 0;border:none;background:url(/media/images/img07.jpg) repeat-x left bottom}
+#sidebar h2 {margin:0;padding:0;border-bottom:2px solid #EBEBEB;font-size:160%;font-weight:normal;color:#454E55}
+#sidebar h3 {font-size:77%;color:#454E55}
+#sidebar p {margin:0;line-height:normal;color:#D4C792}
+#sidebar a {border:none;text-decoration:none}
+#sidebar a:hover {text-decoration:underline}
+/* Submenu */
+#submenu {}
+/* News */
+#news {}
+#news a {font-size:85%}
+/* Footer */
+#footer {width:892px;height:50px;margin:0 auto;padding:20px 0 20px 0;border-top:1px solid #E5E5E5;color:#757E82}
+#footer p {margin:0;text-align:center;font-size:77%}
+#footer a {text-decoration:underline;color:#757E82}
+#footer a:hover {text-decoration:none}
+
+.fancyform {padding-bottom: 10px;}
+.fancyform label {position: absolute; text-align: right; width: 130px;}
+.fancyform input, .fancyform textarea, .fancyform select { margin-left: 140px;}
+.fancyform label.check, label.radio {position: relative; text-align: left;}

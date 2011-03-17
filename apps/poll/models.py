@@ -4,6 +4,7 @@ from django.template import loader, Context
 from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.template import Template
+from django.core.urlresolvers import reverse
 import uuid
 import datetime
 
@@ -90,6 +91,10 @@ class Space(models.Model):
     def __unicode__(self):
         return self.name
     
+    @models.permalink
+    def get_absolute_url(self):
+        return ('space-edit', [str(self.id)])
+    
 class Person(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -109,6 +114,7 @@ class Poll(models.Model):
     space = models.ForeignKey(Space)
     date_published = models.DateTimeField(default=datetime.datetime.now)
     date_finish = models.DateTimeField(blank=True, null=True)
+    closed = models.BooleanField(default=False)
     
     def __unicode__(self):
         return "%s@%s - %s" % (self.query, self.space, self.date_published.strftime("%d/%M/Y %H:%M"))
