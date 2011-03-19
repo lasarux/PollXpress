@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<a class="fright" href="{% url space-add %}">[ add ]</a>
+<h1>Persons</h1>
+<div id="list">
+    {% regroup persons by space as space_list %}
+    {% for space in space_list %}
+    {% comment %} FIXTHIS!!!! {% endcomment %}
+    {% for i in space.grouper.all %}
+    <h2>{{ i.name }}</h2>
+    {% endfor %}
+    <ul>
+        {% for item in space.list %}
+        <li><a href="{{ item.get_absolute_url }}" >{{ item.name }}{% if item.email %} <{{ item.email }}>{% endif %}</a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</div>
+{% endblock %}

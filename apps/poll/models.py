@@ -12,6 +12,7 @@ import datetime
 # Query + Option = Closed question
 
 class Query(models.Model):
+    user = models.ForeignKey(User)
     name = models.CharField(max_length=30)
     description = models.TextField() # help
     date_creation = models.DateTimeField(default=datetime.datetime.now)

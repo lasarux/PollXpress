@@ -8,6 +8,7 @@ class OptionInline(admin.TabularInline):
 
 class QueryAdmin(admin.ModelAdmin):
     inlines = [OptionInline]
+    fields = ['name', 'description']
     list_display = ('name', 'date_creation', 'description')
 
 class PersonAdmin(admin.ModelAdmin):

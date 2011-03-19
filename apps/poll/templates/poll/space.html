@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<a class="fright" href="{% url space-add %}">[ add ]</a>
+<h1>Spaces</h1>
+<div id="list">
+    <ul>
+        {% for item in spaces %}
+        <li><a href="{{ item.get_absolute_url }}" >{{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

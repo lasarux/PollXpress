@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{% trans "Polls" %}</h1>
+<div id="list">
+    <ul>
+        {% for item in polls %}
+        <li><a href="{{ item.get_absolute_url }}" >{{ item.date_published }} - {{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

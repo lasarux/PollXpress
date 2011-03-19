@@ -23,8 +23,8 @@ class PersonTestCase(TestCase):
 class QueryTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create(username="admin", first_name="Linus", last_name="Torvalds")
-        self.query_one = Query.objects.create(name="Query ONE", description="Description Query ONE")
-        self.query_two = Query.objects.create(name="Query TWO", description="Description Query TWO")
+        self.query_one = Query.objects.create(name="Query ONE", description="Description Query ONE", user=self.user)
+        self.query_two = Query.objects.create(name="Query TWO", description="Description Query TWO", user=self.user)
         self.option_one = Option.objects.create(
             name="Option ONE", query=self.query_one, description="Description Query ONE")
         self.option_two = Option.objects.create(
@@ -92,11 +92,25 @@ class QueryTestCase(TestCase):
         self.assertEqual(response.status_code, 200)
         response = self.client.get(reverse('space-add'))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('space-item'))
+        #response = self.client.get(reverse('space-item'))
+        #self.assertEqual(response.status_code, 200)
+        #response = self.client.get(reverse('space-delete'))
+        #self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('space-edit', args=[1]))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('space-delete'))
+        
+    def test_person(self):
+        response = self.client.get(reverse('person-list'))
         self.assertEqual(response.status_code, 200)
-        response = self.client.get(reverse('space-edit'))
+        
+    def test_query(self):
+        response = self.client.get(reverse('query-list'))
+        self.assertEqual(response.status_code, 200)
+        response = self.client.get(reverse('query-add'))
+        self.assertEqual(response.status_code, 200)
+        
+    def test_poll(self):
+        response = self.client.get(reverse('poll-list'))
         self.assertEqual(response.status_code, 200)
 
         

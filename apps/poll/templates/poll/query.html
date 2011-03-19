@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<a class="fright" href="{% url query-add %}">[ add ]</a>
+<h1>{% trans "Queries" %}</h1>
+{% if queries %}
+<div id="list">
+    <ul>
+        {% for item in queries %}
+        <li><a href="{{ item.get_absolute_url }}" >{{ item.date_creation }} - {{ item.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+{% trans "There isn't any query yet. Please add one." %}
+{% endif %}
+</div>
+{% endblock %}
