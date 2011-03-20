@@ -55,5 +55,6 @@ class PollGenerationForm(forms.Form):
         # no past dates
         if date_finish <= datetime.datetime.now():
             raise forms.ValidationError(_("Old datetime"))
+        cleaned_data['date_finish'] = date_finish # date_finish is a datetime
         return cleaned_data
 
