@@ -207,10 +207,16 @@ def poll_edit(request, query_id, template='poll/poll_generation_form.html'):
         form = PollGenerationForm(request.user, request.POST)
         if form.is_valid():
             space = Space.objects.get(id=request.POST['space'])
-            query.generate_ballots(space=space, date_finish=form.cleaned_data['date_finish'])
-            messages.add_message(request, messages.SUCCESS,
-                ugettext("Successfully generated poll: %s") % "test")
-            return HttpResponseRedirect(reverse('poll-list'))
+            result = query.generate_ballots(request=request, space=space, 
+                date_finish=form.cleaned_data['date_finish'])
+            if result:
+                messages.add_message(request, messages.SUCCESS,
+                    ugettext("Successfully generating poll: %s") % query.name)
+                return HttpResponseRedirect(reverse('poll-list'))
+            else:
+                messages.add_message(request, messages.ERROR,
+                    ugettext("Failure generating poll: %s") % query.name)
+                return HttpResponseRedirect(reverse('query-view', args=[query_id]))
     else:
         form = PollGenerationForm(request.user)
         

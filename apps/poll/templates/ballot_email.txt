@@ -14,7 +14,7 @@ Opciones ({{ ballots|length}} en total):
 {{ current_site}}{{ item.get_absolute_url }}
 {% endfor %}
 
-Recuerde que esta votación termina el {{ poll.date_finish|date:'d/m/Y H:i' }}
+Recuerde que esta votación termina el {{ poll.date_finish|date:'d/m/Y H:i' }}.
 
 Muchísimas gracias por su atención,
 

@@ -6,7 +6,8 @@
 <div id="list">
     <ul>
         {% for item in polls %}
-        <li>{{ forloop.counter }}.- {{ item.date_finish|date:"d/m/Y H:i" }} : <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a></li>
+        <li>{{ forloop.counter }}.- {{ item.date_finish|date:"d/m/Y H:i" }} : <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a>
+        </li>
         {% empty %}
         <li>{% trans "Currently there aren't active polls." %}</li>
         {% endfor %}

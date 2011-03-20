@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.template import Template
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext, ugettext_lazy as _
+from django.contrib import messages
 import uuid
 import datetime
 
@@ -14,21 +15,24 @@ import datetime
 
 class Query(models.Model):
     user = models.ForeignKey(User)
-    name = models.TextField(max_length=30)
-    description = models.TextField() # help
+    name = models.TextField(_("Name"), max_length=30)
+    description = models.TextField(_("Description")) # help
     date_creation = models.DateTimeField(default=datetime.datetime.now)
     
     def __unicode__(self):
         return "%s (%i)" % (self.name, len(self.option_set.all()))
         
-    def generate_ballots(self, space=False, date_finish=datetime.datetime.now()+datetime.timedelta(1)): # default is one day
+    def generate_ballots(self, request=None, space=False, date_finish=datetime.datetime.now()+datetime.timedelta(1)): # default is one day
         """This function generates valid ballots for a votation"""
         options = Option.objects.filter(query=self)
         bad_emails = []
         if not options or not space:
             return False # query with no options
         current_site = Site.objects.get_current().domain
+        
         # create a poll
+        if Poll.objects.filter(space=space, query=self):
+            return False
         poll = Poll(query=self, space=space, date_finish=date_finish)
         poll.save()            
             
@@ -82,8 +86,8 @@ class Query(models.Model):
 
 class Option(models.Model):
     query = models.ForeignKey(Query)
-    name = models.TextField()
-    description = models.TextField() # help
+    name = models.TextField(_("Name"))
+    description = models.TextField(_("Description")) # help
     
     def __unicode__(self):
         return "%s@%s" % (self.name, self.query.name)
@@ -105,8 +109,8 @@ class Space(models.Model):
 
     
 class Person(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+    name = models.CharField(_("Name"), max_length=100)
+    email = models.EmailField(_("Email"))
     date = models.DateTimeField(default=datetime.datetime.now)
     space = models.ManyToManyField(Space, null=True, blank=True) # user could "live" with no space
     
@@ -120,10 +124,10 @@ class Person(models.Model):
 
 class Poll(models.Model):
     query = models.ForeignKey(Query)
-    space = models.ForeignKey(Space)
+    space = models.ForeignKey(Space, verbose_name=_("Space"))
     date_published = models.DateTimeField(default=datetime.datetime.now)
     date_finish = models.DateTimeField(blank=True, null=True)
-    closed = models.BooleanField(default=False)
+    closed = models.BooleanField(_("Closed"), default=False)
     
     def __unicode__(self):
         return "%s@%s - %s" % (self.query, self.space, self.date_published.strftime("%d/%M/Y %H:%M"))
@@ -139,6 +143,9 @@ class Poll(models.Model):
         for i in ballots:
             i.done = False
             i.save()
+            
+    class Meta:
+        unique_together = ("query", "space")
 
 class Result(models.Model):
     poll = models.ForeignKey(Poll)
@@ -152,7 +159,7 @@ class Result(models.Model):
 
 class Ballot(models.Model):
     uid = models.CharField(max_length=256) # email in uid
-    done = models.BooleanField(default=False)
+    done = models.BooleanField(default=False) # FIXME: this isn't necessary already
     sent = models.BooleanField(default=False)
     result = models.ForeignKey(Result)
     person = models.ForeignKey(Person)
@@ -160,12 +167,12 @@ class Ballot(models.Model):
     def countit(self):
         # check if this ballot has been used and poll is active
         if not self.done and datetime.datetime.now()<=self.result.poll.date_finish:
-            # delete person's ballots
-            ballots = Ballot.objects.filter(result__poll=self.result.poll, person=self.person).delete()
             # count it
             self.result.votes += 1 # add 1 vote to this option
             self.result.save()
             self.send_confirmation()
+            # delete person's ballots
+            ballots = Ballot.objects.filter(result__poll=self.result.poll, person=self.person).delete()
             return True
         else:
             return False

@@ -10,7 +10,7 @@
 <h1>{% trans "Persons" %}</h1>
 <div id="list">
     {% for item in spaces %}
-    <h2>{{ item.name }}</h2>
+    <h2>{{ item.name }} [{{ item.person_set.all|length }} {% trans "persons" %}]</h2>
     <ul>
         {% for person in item.person_set.all %}
         <li>{{ forloop.counter }}.- {{ person.name }}
