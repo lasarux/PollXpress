@@ -3,7 +3,7 @@
 .fcenter {float:none;text-align:center}
 .fclear {clear:both}
 .inner_copy {border:0;color:#f00;float:left;width:50% !important;margin:-100% 0 0 0;overflow:hidden;line-height:0;padding:0;font-size:11px}
-body {margin-top:40px;background:#fff;text-align:justify;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#757E82}
+body {margin-top:10px;backgiround:#fff;text-align:justify;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#757E82}
 * {margin:0;padding:0}
 h1, h2, h3 {color:#009087}
 h1 {margin-bottom: 20px;}
@@ -13,8 +13,9 @@ p, blockquote, ul, ol {margin-bottom:20px;line-height:2em}
 p {}
 blockquote {}
 ul, ol, li {margin:0;padding:0;list-style:none}
-a {text-decoration:underline;color:#EF8116}
+a {text-decoration:none;color:#EF8116}
 a:hover {text-decoration:none;color:#EF8116}
+a img {border: 0;}
 /* Wrapper */
 #wrapper {}
 /* Header */
@@ -27,7 +28,7 @@ a:hover {text-decoration:none;color:#EF8116}
 #logo a {text-decoration:none;color:#3C84B3}
 /* Menu */
 #menu {float:right;width:592px;height:54px;margin-top:10px;background:url(/media/images/img01.jpg) no-repeat left top}
-#menu ul {margin:0;padding:0 0 0 20px;list-style:none;line-height:normal;margin-left:30px}
+#menu ul {margin:0;padding:0 0 0 0px;list-style:none;line-height:normal;margin-left:15px}
 #menu li {display:inline;text-align:center}
 #menu a {display:block;float:left;height:36px;padding:18px 20px 0 20px;text-decoration:none;text-align:center;text-transform:uppercase;font-family:Arial,Helvetica,sans-serif;font-size:14px;font-weight:bold;color:#464E53}
 #menu a:hover, #menu .active a {background:#009087;color:#fff}
@@ -74,5 +75,10 @@ a:hover {text-decoration:none;color:#EF8116}
 
 .fancyform {padding-bottom: 10px;}
 .fancyform label {position: absolute; text-align: right; width: 130px;}
-.fancyform input, .fancyform textarea, .fancyform select { margin-left: 140px;}
+.fancyform input, .fancyform textarea, .fancyform select { margin-left: 140px; padding:5px; border:1px solid grey;}
 .fancyform label.check, label.radio {position: relative; text-align: left;}
+.fancyform textarea{height: 80px;}
+
+button {padding:6px;}
+.action {margin-left:8px;}
+.centered{width: 150px; height: 300px; position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -150px;}

@@ -1,5 +1,5 @@
 Este es un mensaje del sistema de votación PollXpress del Partido
-Pirata. Usted, {{ poll.space.admin.name }}, ha recibido este correo porque es el
+Pirata. Usted, {{ space.admin.first_name }} {{ space.admin.last_name }}, ha recibido este correo porque es el
 administrador del Espacio "{{ space.name }}" y ha creado la votación
 "{{ name }}".
 

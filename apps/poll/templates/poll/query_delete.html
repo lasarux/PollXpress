@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{{ query.name }}</h1>
+<p>{{ query.description }}</p>
+{% if query.poll_set.all %}
+<p>{% trans "There is one or more polls usign this Query. You can't delete it." %}</p>
+{% else %}
+<p><strong>{% trans "Are you sure that you want to delete this Query?" %}</strong></p>
+<form action="." method="post">{% csrf_token %}
+    <button name="yes">
+        <img src="{{ MEDIA_URL}}images/icons/accept.png" alt=""/> 
+        {% trans "Yes" %}
+    </button>
+    <button style="margin-left:10px;" name="no">
+        <img src="{{ MEDIA_URL }}images/icons/cancel.png" alt=""/>
+        {% trans "No" %}
+    </button>
+</form>
+{% endif %}
+{% endblock %}

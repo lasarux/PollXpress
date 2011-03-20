@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block content %}
-<h1>{% trans "Add Query" %}</h1>
+<h1>{{ action }} {% trans "Person" %}</h1>
 {% if form.errors %}
 <div class="error">
     {% trans "There are some error. Please, fix them and try again." %}
@@ -12,14 +12,10 @@
 <div class="fancyform">
     <form enctype="multipart/form-data" action="." method="post">{% csrf_token %}
     {% for field in form %}
-        {% if not field.is_hidden %}
         <p>
-            <label {% if field.errors %}class="fielderror"{% endif %}>
-            {{ field.label}}
-            </label>
+            <label {% if field.errors %}class="fielderror"{% endif %}>{{ field.label}}</label>
             {{ field }}
         </p>
-        {% endif %}
     {% endfor %}
     <p><input type="submit" value="Submit" /></p>
     </form>

@@ -5,6 +5,7 @@ from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 from django.template import Template
 from django.core.urlresolvers import reverse
+from django.utils.translation import ugettext, ugettext_lazy as _
 import uuid
 import datetime
 
@@ -13,7 +14,7 @@ import datetime
 
 class Query(models.Model):
     user = models.ForeignKey(User)
-    name = models.CharField(max_length=30)
+    name = models.TextField(max_length=30)
     description = models.TextField() # help
     date_creation = models.DateTimeField(default=datetime.datetime.now)
     
@@ -26,7 +27,7 @@ class Query(models.Model):
         bad_emails = []
         if not options or not space:
             return False # query with no options
-        
+        current_site = Site.objects.get_current().domain
         # create a poll
         poll = Poll(query=self, space=space, date_finish=date_finish)
         poll.save()            
@@ -50,10 +51,11 @@ class Query(models.Model):
                 
             # prepare message
             t = loader.get_template('ballot_email.txt')
-            c = Context({'person': i, 'poll': poll, 'ballots': ballots})
+            c = Context({'person': i, 'poll': poll, 'ballots': ballots,
+                         'current_site': current_site})
             message = t.render(c)
             try:
-                i.send('PollXpress: %s - NO VOTAR AUN' % poll.query.name, message)
+                i.send(_('PollXpress: %s') % poll.query.name, message)
                 # mark ballots as sent
                 for ballot in ballots:
                     ballot.sent = True
@@ -66,16 +68,21 @@ class Query(models.Model):
         t = loader.get_template('ballot_bad_emails.txt')
         c = Context({'persons': bad_emails, 'space': space, 'name': self.name})
         message = t.render(c)
-        email = EmailMessage('PollXpress: %s - Correos con problemas' % poll.query.name, 
+        email = EmailMessage(_('PollXpress: %s - emails with problems') % poll.query.name, 
             message, 'pollxpress@partidopirata.es', [space.admin.email])
         email.send()
         return True
+        
+    @models.permalink
+    def get_absolute_url(self):
+        return ('query-view', [str(self.id)])
+        
 
 # TODO: better statistics (gender, region, age...)
 
 class Option(models.Model):
     query = models.ForeignKey(Query)
-    name = models.CharField(max_length=30)
+    name = models.TextField()
     description = models.TextField() # help
     
     def __unicode__(self):
@@ -85,7 +92,7 @@ class Option(models.Model):
 # Space + Person = Groups of persons
 
 class Space(models.Model):
-    admin = models.ForeignKey(User, default=1) # TODO: default is admin
+    admin = models.ForeignKey(User) # TODO: add "friends" for cooperation
     name = models.CharField(max_length=100)
     description = models.TextField()
     
@@ -95,6 +102,7 @@ class Space(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('space-edit', [str(self.id)])
+
     
 class Person(models.Model):
     name = models.CharField(max_length=100)
@@ -138,7 +146,7 @@ class Result(models.Model):
     votes = models.IntegerField(default=0)
     
     def __unicode__(self):
-        return "%s@%s=%i" % (self.option, self.poll.query.name, result)
+        return "%s@%s=%i" % (self.option.name, self.poll.query.name, self.votes)
 
 # ballot: personalized items to perform a poll
 
@@ -170,8 +178,12 @@ class Ballot(models.Model):
         t = loader.get_template('ballot_confirmation_email.txt')
         c = Context({'person': self.person, 'result': self.result})
         message = t.render(c)
-        self.person.send('PollXpress: %s - Confirmacion del voto' % self.result.poll.query.name, message)
+        self.person.send(_('PollXpress: %s - Vote confirmation') % self.result.poll.query.name, message)
 
 
     def __unicode__(self):
         return "%s: %s@%s" % (self.uid, self.result.option.name, self.result.poll.query.name)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('vote', [self.uid])

@@ -2,12 +2,27 @@
 {% load i18n %}
 
 {% block content %}
-<a class="fright" href="{% url space-add %}">[ add ]</a>
-<h1>Spaces</h1>
+<div class="fright">
+    <a class="action" href="{% url space-add %}">
+        <img tip="{% trans "add question" %}" src="{{ MEDIA_URL }}images/icons/add.png" />
+    </a>
+</div>
+<h1>{% trans "Spaces" %}</h1>
 <div id="list">
     <ul>
         {% for item in spaces %}
-        <li><a href="{{ item.get_absolute_url }}" >{{ item.name }}</a></li>
+        <li>{{ forloop.counter }}.- {{ item.name }}
+            <a class="action" href="{% url space-edit item.id %}">
+                <img tip="{% trans "edit space" %}" src="{{ MEDIA_URL }}images/icons/page_edit.png" />
+            </a>
+            {% if not item.person_set.all %}
+            <a class="action" href="{% url space-delete item.id %}">
+                <img tip="{% trans "delete space" %}" src="{{ MEDIA_URL }}images/icons/bin_closed.png" />
+            </a>
+            {% else %}
+            <img tip="{% trans "locked (there are persons in)" %}" src="{{ MEDIA_URL }}images/icons/lock.png" />
+            {% endif %}
+        </li>
         {% endfor %}
     </ul>
 </div>

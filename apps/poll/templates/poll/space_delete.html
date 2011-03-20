@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{{ space.name }}</h1>
+<p>{{ space.description }}</p>
+<p><strong>{% trans "Are you sure that you want to delete this Space?" %}</strong></p>
+<form action="." method="post">{% csrf_token %}
+    <button name="yes">
+        <img src="{{ MEDIA_URL}}images/icons/accept.png" alt=""/> 
+        {% trans "Yes" %}
+    </button>
+    <button style="margin-left:10px;" name="no">
+        <img src="{{ MEDIA_URL }}images/icons/cancel.png" alt=""/>
+        {% trans "No" %}
+    </button>
+</form>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+<h1>{{ query.name }}</h1>
+<p>{{ query.description }}</p>
+<div class="fright">
+    <a class="action" href="{% url query-edit query.id %}">
+        <img tip="{% trans "edit query" %}" src="{{ MEDIA_URL }}images/icons/page_edit.png" />
+    </a>
+    {% if not query.poll_set.all %}
+    <a class="action" href="{% url query-delete query.id %}">
+        <img tip="{% trans "delete query" %}" src="{{ MEDIA_URL }}images/icons/bin_closed.png" />
+    </a>
+    {% else %}
+    <img tip="{% trans "locked (there's a poll related)" %}" src="{{ MEDIA_URL }}images/icons/lock.png" />
+    {% endif %}
+    {% if persons %}
+    <a class="action" href="{% url poll-add query.id %}">
+        <img tip="{% trans "create poll" %}" src="{{ MEDIA_URL }}images/icons/report_add.png" />
+    </a>
+    {% endif %}
+</div>
+<br/>
+<h2>{% trans "Opciones" %}</h2>
+<hr><br/>
+<ul>
+{% for item in query.option_set.all %}
+<li>{{ forloop.counter}}.- {{ item.name }}
+    <a class="action" href="{% url option-edit query.id item.id %}">
+        <img tip="{% trans "edit option" %}" src="{{ MEDIA_URL }}images/icons/page_edit.png" />
+    </a>
+    <a class="action" href="{% url option-delete item.id %}">
+        <img tip="{% trans "delete option" %}" src="{{ MEDIA_URL }}images/icons/bin_closed.png" />
+    </a>
+</li>
+{% empty %}
+<li>{% trans "There isn't options yet." %}</li>
+{% endfor %}
+{% url option-add query.id as url_option_add%}
+</ul>
+<br/>
+{% blocktrans  %}To add a new option, please click <a href="{{ url_option_add }}">here</a>.{% endblocktrans %}
+{% endblock %}

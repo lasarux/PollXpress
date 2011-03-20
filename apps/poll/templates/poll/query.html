@@ -2,13 +2,17 @@
 {% load i18n %}
 
 {% block content %}
-<a class="fright" href="{% url query-add %}">[ add ]</a>
+<div class="fright">
+    <a href="{% url query-add %}">
+        <img tip="{% trans "add question" %}" src="{{ MEDIA_URL }}images/icons/add.png" />
+    </a>
+</div>
 <h1>{% trans "Queries" %}</h1>
 {% if queries %}
 <div id="list">
     <ul>
         {% for item in queries %}
-        <li><a href="{{ item.get_absolute_url }}" >{{ item.date_creation }} - {{ item.name }}</a></li>
+        <li>{{ forloop.counter }}.- <a href="{{ item.get_absolute_url }}" >{{ item.name }}</a> - {{ item.date_creation|date:'d/m/Y' }}</li>
         {% endfor %}
     </ul>
 {% else %}
