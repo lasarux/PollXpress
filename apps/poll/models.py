@@ -160,11 +160,8 @@ class Ballot(models.Model):
     def countit(self):
         # check if this ballot has been used and poll is active
         if not self.done and datetime.datetime.now()<=self.result.poll.date_finish:
-            # mark as done person ballots
-            ballots = Ballot.objects.filter(result__poll=self.result.poll, person=self.person)
-            for i in ballots:
-                i.done = True
-                i.save()
+            # delete person's ballots
+            ballots = Ballot.objects.filter(result__poll=self.result.poll, person=self.person).delete()
             # count it
             self.result.votes += 1 # add 1 vote to this option
             self.result.save()
