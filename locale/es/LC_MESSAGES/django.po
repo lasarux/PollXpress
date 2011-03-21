@@ -60,7 +60,7 @@ msgstr "Cerrado"
 #: apps/poll/models.py:185
 #, python-format
 msgid "PollXpress: %s - Vote confirmation"
-msgstr "PollXpress: %s - Confirmación del boto"
+msgstr "PollXpress: %s - Confirmación del voto"
 
 #: apps/poll/views.py:29 apps/poll/views.py:80
 msgid "Edit"
@@ -179,7 +179,7 @@ msgstr "Encuestas"
 
 #: apps/poll/templates/poll/poll.html:12
 msgid "Currently there aren't active polls."
-msgstr ""
+msgstr "Actualmente no hay encuentas activas."
 
 #: apps/poll/templates/poll/query.html:7 apps/poll/templates/poll/space.html:7
 msgid "add question"
