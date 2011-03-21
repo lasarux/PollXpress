@@ -7,6 +7,13 @@
     <ul>
         {% for item in polls %}
         <li>{{ forloop.counter }}.- {{ item.date_finish|date:"d/m/Y H:i" }} : <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a>
+        {% if item.result_set.all %}
+            <ul>
+            {% for result in item.result_set.all %}
+            <li>{{ result.option.name }}: {{ result.votes }} {% trans "votes" %}</li>
+            {% endfor %}
+            </ul>
+            {% endif %}
         </li>
         {% empty %}
         <li>{% trans "Currently there aren't active polls." %}</li>

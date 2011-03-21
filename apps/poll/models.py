@@ -15,7 +15,7 @@ import datetime
 
 class Query(models.Model):
     user = models.ForeignKey(User)
-    name = models.TextField(_("Name"), max_length=30)
+    name = models.TextField(_("Question"), max_length=30)
     description = models.TextField(_("Description")) # help
     date_creation = models.DateTimeField(default=datetime.datetime.now)
     
@@ -40,14 +40,18 @@ class Query(models.Model):
         persons = Person.objects.filter(space=space)
         if not persons:
             return False
-    
+
+        # create results for this poll
+        results = []
+        for option in options:            
+            result = Result(poll=poll, option=option)
+            result.save()
+            results.append(result)
+        
+        # create ballots and send them
         for i in persons:
             ballots = []
-            for option in options:
-                # create results for this poll
-                result = Result(poll=poll, option=option)
-                result.save()
-                
+            for result in results:
                 uid = uuid.uuid4().hex
                 b = Ballot(uid=uid, result=result, person=i)
                 b.save()
@@ -86,7 +90,7 @@ class Query(models.Model):
 
 class Option(models.Model):
     query = models.ForeignKey(Query)
-    name = models.TextField(_("Name"))
+    name = models.TextField(_("Option"))
     description = models.TextField(_("Description")) # help
     
     def __unicode__(self):
