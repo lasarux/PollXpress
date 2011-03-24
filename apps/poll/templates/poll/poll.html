@@ -9,7 +9,7 @@
         {% if item.result_set.all %}
         <ol>
         {% for result in item.get_result %}
-        <li>{{ result.option.name }}: {{ result.votes }} {% trans "votes" %} <strong>({{ result.porcentage }})</strong></li>
+        <li>{{ result.option.name }}: {{ result.votes }} {% trans "votes" %} <strong>({{ result.porcentage }}%)</strong></li>
         {% endfor %}
         </ol>
         {% endif %}
