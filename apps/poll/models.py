@@ -157,8 +157,16 @@ class Poll(models.Model):
         return data
         
     def get_votes_pending(self):
-        total_options = len(self.query.option_set.all())
-        return len(self.ballot_set.all())/total_options
+        res = len(self.result_set.all()[0].ballot_set.all())
+        return res
+        
+    def get_participation(self):
+        results = self.result_set.all()
+        total_pending = self.get_votes_pending()
+        total_ballots = float(sum([i.votes for i in results]))
+        total = total_pending + total_ballots
+        print total_ballots, total, (total_ballots/total*100)
+        return "%i/%i (%.2f%%)" % (total_ballots, total, (total_ballots/total*100))
     
     class Meta:
         unique_together = ("query", "space")

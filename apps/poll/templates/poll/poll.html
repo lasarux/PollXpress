@@ -5,6 +5,7 @@
 <div id="list">
     {% for item in polls %}
         <h3>{{ forloop.counter }}.- <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a></h3>
+        <h3>{{ item.get_participation }}</h3>
         <strong class="fright"><img tip="expiration time" src="{{ MEDIA_URL }}images/icons/bell.png" /> {{ item.date_finish|date:"d/m/Y H:i" }} @ {{ item.space }}</strong><br/>
         {% if item.result_set.all %}
         <ol>
