@@ -82,3 +82,9 @@ a img {border: 0;}
 button {padding:6px;}
 .action {margin-left:8px;}
 .centered{width: 150px; height: 300px; position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -150px;}
+
+.page404 {background-image: url('/media/images/404.png'); width: 479px; height: 346px;  position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -240px;}
+.page404 #bubble {padding: 250px 20px 20px 150px; color: white;}
+.page404 p, .page404 h2, .pageok p, .pageok h2 {color: white;}
+.pageok {background-image: url('/media/images/ok.png'); width: 486px; height: 346px;  position: absolute; top: 50%; left: 50%; margin-top: -150px; margin-left: -240px;}
+.pageok #bubble {padding: 250px 20px 20px 160px; color: white;}

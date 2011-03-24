@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 09:48+0100\n"
+"POT-Creation-Date: 2011-03-24 18:58+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,7 +65,7 @@ msgstr "Espacio"
 msgid "Closed"
 msgstr "Cerrado"
 
-#: apps/poll/models.py:201
+#: apps/poll/models.py:208
 #, python-format
 msgid "PollXpress: %s - Vote confirmation"
 msgstr "PollXpress: %s - Confirmación del voto"
@@ -173,7 +173,7 @@ msgstr "borrar persona"
 
 #: apps/poll/templates/poll/person.html:25
 msgid "locked (person with ballots)"
-msgstr ""
+msgstr "bloqueado (persona con papeletas)"
 
 #: apps/poll/templates/poll/person.html:29
 msgid "This space is empty."
@@ -191,20 +191,20 @@ msgstr "Persona"
 msgid "Polls"
 msgstr "Encuestas"
 
-#: apps/poll/templates/poll/poll.html:12
+#: apps/poll/templates/poll/poll.html:13
 msgid "votes"
 msgstr ""
 
-#: apps/poll/templates/poll/poll.html:21
+#: apps/poll/templates/poll/poll.html:22
 #, python-format
 msgid "%(ballots_length)s persons pending:"
 msgstr "%(ballots_length)s personas pendientes:"
 
-#: apps/poll/templates/poll/poll.html:24
+#: apps/poll/templates/poll/poll.html:25
 msgid "Pending:"
 msgstr "Pendiente:"
 
-#: apps/poll/templates/poll/poll.html:31
+#: apps/poll/templates/poll/poll.html:32
 msgid "Currently there aren't active polls."
 msgstr "Actualmente no hay encuentas activas."
 
@@ -303,8 +303,8 @@ msgid "Are you sure that you want to delete this Space?"
 msgstr "¿Está seguro que desea eliminar este Espacio?"
 
 #: templates/404.html:11
-msgid "Uuuups! This page doesn't exist anymore"
-msgstr "¡Uuuups! Esta página ya no existe"
+msgid "Uuuups! This page doesn't exist anymore."
+msgstr "¡Uuuups! Esta página ya no existe."
 
 #: templates/500.html:11
 msgid "Uuuups! Meditation Guru..."

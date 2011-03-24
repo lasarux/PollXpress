@@ -3,14 +3,14 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <title>PollXpress - VotaciónXpress</title>
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/reset.css" />
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/text.css" />
-    <link rel="stylesheet" href="{{ MEDIA_URL}}css/960.css" />
+    <link rel="stylesheet" href="{{ MEDIA_URL}}css/default.css" />
 </head>
 <body>
-<h1>{% trans "Thank you for voting!" %}</h1>
-<p>{% trans "We're sending you a confirmation email." %}</p>
-
-<!-- end .container_16 -->
+<div class="pageok">
+    <div id="bubble">
+        <h2>{% trans "Thank you for voting!" %}</h2>
+        <p>{% trans "We're sending you a confirmation email." %}</p>
+    </div>
+</div>
 </body>
 </html>

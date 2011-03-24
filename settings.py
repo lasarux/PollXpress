@@ -1,7 +1,7 @@
 # Django settings for votexpress project.
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 DIR     = os.path.dirname(__file__)
