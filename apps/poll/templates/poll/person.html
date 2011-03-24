@@ -17,9 +17,13 @@
             <a class="action" href="{% url person-edit person.id %}">
                 <img tip="{% trans "edit person" %}" src="{{ MEDIA_URL }}images/icons/page_edit.png" />
             </a>
+            {% if not person.ballot_set.all %}
             <a class="action" href="{% url person-delete person.id %}">
                 <img tip="{% trans "delete person" %}" src="{{ MEDIA_URL }}images/icons/bin_closed.png" />
             </a>
+            {% else %}
+            <img tip="{% trans "locked (person with ballots)" %}" src="{{ MEDIA_URL }}images/icons/lock.png" />
+            {% endif %}
         </li>
         {% empty %}
         <li>{% trans "This space is empty." %}</li>
