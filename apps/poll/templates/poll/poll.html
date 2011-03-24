@@ -21,7 +21,7 @@
         <strong>{% blocktrans %}{{ ballots_length }} persons pending:{% endblocktrans %} </strong>
         {% endwith %}
         {% for ballot in ballots %}
-        <li>{{ ballot.person.name }} <a href="mailto:{{ ballot.person.email }}">&lt;{{ ballot.person.email }}&gt;</a></li>
+        <li>{{ ballot.person.name }} <a href="mailto:{{ ballot.person.email }}?subject={% trans 'Pending:' %} {{ item.query.name }}">&lt;{{ ballot.person.email }}&gt;</a></li>
         {% endfor %}
         </ul>
         <br/>
