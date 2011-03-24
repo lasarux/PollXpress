@@ -1,23 +1,34 @@
 {% extends "base.html" %}
 {% load i18n %}
-
 {% block content %}
 <h1>{% trans "Polls" %}</h1>
 <div id="list">
-    <ul>
-        {% for item in polls %}
-        <li>{{ forloop.counter }}.- {{ item.date_finish|date:"d/m/Y H:i" }} : <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a>
+    {% for item in polls %}
+        <h3>{{ forloop.counter }}.- <a href="{{ item.get_absolute_url }}" >{{ item.query.name }}</a></h3>
+        <strong class="fright"><img tip="expiration time" src="{{ MEDIA_URL }}images/icons/bell.png" /> {{ item.date_finish|date:"d/m/Y H:i" }} @ {{ item.space }}</strong><br/>
         {% if item.result_set.all %}
-            <ul>
-            {% for result in item.result_set.all %}
-            <li>{{ result.option.name }}: {{ result.votes }} {% trans "votes" %}</li>
-            {% endfor %}
-            </ul>
-            {% endif %}
-        </li>
-        {% empty %}
-        <li>{% trans "Currently there aren't active polls." %}</li>
+        <ol>
+        {% for result in item.get_result %}
+        <li>{{ result.option.name }}: {{ result.votes }} {% trans "votes" %} <strong>({{ result.porcentage }})</strong></li>
         {% endfor %}
-    </ul>
+        </ol>
+        {% endif %}
+        <br/>
+        <ul>
+        {% with item.result_set.all.0.ballot_set.all as ballots %}
+        {% if ballots %}
+        {% with ballots|length as ballots_length %}
+        <strong>{% blocktrans %}{{ ballots_length }} persons pending:{% endblocktrans %} </strong>
+        {% endwith %}
+        {% for ballot in ballots %}
+        <li>{{ ballot.person.name }} <a href="mailto:{{ ballot.person.email }}">&lt;{{ ballot.person.email }}&gt;</a></li>
+        {% endfor %}
+        </ul>
+        <br/>
+        {% endif %}
+        {% endwith %}
+    {% empty %}
+        <h3>{% trans "Currently there aren't active polls." %}</h3>
+    {% endfor %}
 </div>
 {% endblock %}

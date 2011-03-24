@@ -135,19 +135,31 @@ class Poll(models.Model):
     
     def __unicode__(self):
         return "%s@%s - %s" % (self.query, self.space, self.date_published.strftime("%d/%M/Y %H:%M"))
-        
-    def reset(self):
-        # reset result in options
+    
+    # Currently reset isn't more an option (ballots have been deleted)
+    def reset(self): 
+        pass
+    
+    def get_result(self):
         results = self.result_set.all()
+        total_ballots = float(sum([i.votes for i in results]))
+        data = []
         for i in results:
-            i.votes = 0
-            i.save()
-        # mark ballots as not done
-        ballots = Ballot.objects.filter(result__poll=self.id)
-        for i in ballots:
-            i.done = False
-            i.save()
-            
+            try:
+                porcentage = ((i.votes/total_ballots)*100)
+            except:
+                porcentage = 0
+            data.append({
+                'option': i.option, 
+                'votes': i.votes, 
+                'porcentage': "%.2f" % porcentage
+            })
+        return data
+        
+    def get_votes_pending(self):
+        total_options = len(self.query.option_set.all())
+        return len(self.ballot_set.all())/total_options
+    
     class Meta:
         unique_together = ("query", "space")
 

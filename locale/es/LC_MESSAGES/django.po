@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-20 19:28+0100\n"
+"POT-Creation-Date: 2011-03-24 07:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,39 +25,47 @@ msgstr "Formato de tiempo inválido"
 msgid "Old datetime"
 msgstr "Fecha antigua"
 
-#: apps/poll/models.py:18 apps/poll/models.py:89 apps/poll/models.py:112
-msgid "Name"
-msgstr "Nombre"
+#: apps/poll/models.py:18
+msgid "Question"
+msgstr "Pregunta"
 
-#: apps/poll/models.py:19 apps/poll/models.py:90
+#: apps/poll/models.py:19 apps/poll/models.py:94
 msgid "Description"
 msgstr "Descripción"
 
-#: apps/poll/models.py:62
+#: apps/poll/models.py:66
 #, python-format
 msgid "PollXpress: %s"
 msgstr "PollXpress: %s"
 
-#: apps/poll/models.py:75
+#: apps/poll/models.py:79
 #, python-format
 msgid "PollXpress: %s - emails with problems"
 msgstr "PollXpress: %s - emails con problemas"
 
-#: apps/poll/models.py:113
+#: apps/poll/models.py:93
+msgid "Option"
+msgstr "Opción"
+
+#: apps/poll/models.py:116
+msgid "Name"
+msgstr "Nombre"
+
+#: apps/poll/models.py:117
 msgid "Email"
 msgstr "Correo"
 
-#: apps/poll/models.py:127
+#: apps/poll/models.py:131
 #: apps/poll/templates/poll/poll_generation_form.html:4
 #: apps/poll/templates/poll/space_form.html:4
 msgid "Space"
 msgstr "Espacio"
 
-#: apps/poll/models.py:130
+#: apps/poll/models.py:134
 msgid "Closed"
 msgstr "Cerrado"
 
-#: apps/poll/models.py:185
+#: apps/poll/models.py:201
 #, python-format
 msgid "PollXpress: %s - Vote confirmation"
 msgstr "PollXpress: %s - Confirmación del voto"
@@ -71,6 +79,7 @@ msgid "Add"
 msgstr "Añadir"
 
 #: apps/poll/views.py:41
+#, python-format
 msgid "Successfully saved space: %s"
 msgstr "Espacio guardado con éxito: %s"
 
@@ -110,6 +119,7 @@ msgid "Successfully deleted option: %s"
 msgstr "Opción guardada con éxito: %s"
 
 #: apps/poll/views.py:214
+#, python-format
 msgid "Successfully generating poll: %s"
 msgstr "Encuesta generada con éxito: %s"
 
@@ -173,11 +183,20 @@ msgstr "Sin Espacio"
 msgid "Person"
 msgstr "Persona"
 
-#: apps/poll/templates/poll/poll.html:5 templates/base.html:54
+#: apps/poll/templates/poll/poll.html:4 templates/base.html:54
 msgid "Polls"
 msgstr "Encuestas"
 
 #: apps/poll/templates/poll/poll.html:12
+msgid "votes"
+msgstr ""
+
+#: apps/poll/templates/poll/poll.html:21
+#, python-format
+msgid "%(ballots_length)s persons pending:"
+msgstr "%(ballots_length)s personas pendientes:"
+
+#: apps/poll/templates/poll/poll.html:31
 msgid "Currently there aren't active polls."
 msgstr "Actualmente no hay encuentas activas."
 
