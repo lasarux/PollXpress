@@ -165,7 +165,6 @@ class Poll(models.Model):
         total_pending = self.get_votes_pending()
         total_ballots = float(sum([i.votes for i in results]))
         total = total_pending + total_ballots
-        print total_ballots, total, (total_ballots/total*100)
         return "%i/%i (%.2f%%)" % (total_ballots, total, (total_ballots/total*100))
     
     class Meta:
