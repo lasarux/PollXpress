@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 07:50+0100\n"
+"POT-Creation-Date: 2011-03-24 09:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,20 +162,24 @@ msgid "persons"
 msgstr "personas"
 
 #: apps/poll/templates/poll/person.html:18
-#: apps/poll/templates/poll/person.html:35
+#: apps/poll/templates/poll/person.html:39
 msgid "edit person"
 msgstr "editar persona"
 
-#: apps/poll/templates/poll/person.html:21
-#: apps/poll/templates/poll/person.html:38
+#: apps/poll/templates/poll/person.html:22
+#: apps/poll/templates/poll/person.html:42
 msgid "delete person"
 msgstr "borrar persona"
 
 #: apps/poll/templates/poll/person.html:25
+msgid "locked (person with ballots)"
+msgstr ""
+
+#: apps/poll/templates/poll/person.html:29
 msgid "This space is empty."
 msgstr "Este espacio está vacío"
 
-#: apps/poll/templates/poll/person.html:31
+#: apps/poll/templates/poll/person.html:35
 msgid "Whitout Space"
 msgstr "Sin Espacio"
 
@@ -195,6 +199,10 @@ msgstr ""
 #, python-format
 msgid "%(ballots_length)s persons pending:"
 msgstr "%(ballots_length)s personas pendientes:"
+
+#: apps/poll/templates/poll/poll.html:24
+msgid "Pending:"
+msgstr "Pendiente:"
 
 #: apps/poll/templates/poll/poll.html:31
 msgid "Currently there aren't active polls."
