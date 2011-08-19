@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^space/add/$', 'apps.poll.views.space_edit', name="space-add"),
     url(r'^space/edit/(?P<space_id>\d+)/$', 'apps.poll.views.space_edit', name='space-edit'),
     url(r'^space/delete/(?P<space_id>\w+)/$', 'apps.poll.views.space_delete', name="space-delete"),
+    url(r'^space/fromtxt/(?P<space_id>\w+)/$', 'apps.poll.views.space_fromtxt', name="space-fromtxt"),
         
     url(r'^persons$', 'apps.poll.views.person_list', name="person-list"),
     url(r'^persons/add/$', 'apps.poll.views.person_edit', name="person-add"),

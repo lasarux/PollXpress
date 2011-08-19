@@ -2,6 +2,7 @@
 {% load i18n %}
 
 {% block content %}
+<!-- begin poll/space.html -->
 <div class="fright">
     <a class="action" href="{% url space-add %}">
         <img tip="{% trans "add question" %}" src="{{ MEDIA_URL }}images/icons/add.png" />
@@ -22,8 +23,12 @@
             {% else %}
             <img tip="{% trans "locked (there are persons in)" %}" src="{{ MEDIA_URL }}images/icons/lock.png" />
             {% endif %}
+            <a class="action" href="{% url space-fromtxt item.id %}">
+                <img tip="{% trans "add persons from a csv file" %}" src="{{ MEDIA_URL }}images/icons/add.png" />
+            </a>
         </li>
         {% endfor %}
     </ul>
 </div>
+<!-- end poll/space.html -->
 {% endblock %}

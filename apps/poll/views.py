@@ -7,8 +7,9 @@ from django.contrib import messages
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.contrib.sites.models import Site
 from models import Ballot, Poll, Space, Person, Query, Option
-from forms import QueryForm, OptionForm, PersonForm, SpaceForm, PollGenerationForm
+from forms import QueryForm, OptionForm, PersonForm, SpaceForm, SpaceFromtxtForm, PollGenerationForm
 from datetime import date, datetime
+import csv
 
 @login_required
 def index(request, template='index.html'):
@@ -46,6 +47,31 @@ def space_edit(request, space_id=None, template='poll/space_form.html'):
         form = SpaceForm()
         
     data = {'form': form, 'action':action}
+    return render_to_response(template, data, context_instance=RequestContext(request))
+
+
+@login_required
+def space_fromtxt(request, space_id=None, template='poll/space_fromtxt.html'):
+    space = Space.objects.get(id=space_id)
+    message = ''
+    if request.method == 'POST':
+        form = SpaceFromtxtForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = csv.reader(request.FILES['file'])
+            #try:
+            for row in data:
+                person = Person.objects.filter(space__id=space_id, email=row[0])
+                if not person:
+                    person = Person.objects.create(name=row[1], email=row[0])
+                    person.space.add(space)
+                    person.save()
+            return HttpResponseRedirect(reverse('space-list'))
+            #except:
+            #    message = _("There's an error in this file. Fix it and upload it again.")
+    else:
+        form = SpaceFromtxtForm()
+    
+    data = {'form': form, 'message': message}
     return render_to_response(template, data, context_instance=RequestContext(request))
 
 @login_required

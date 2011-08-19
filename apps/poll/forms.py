@@ -23,10 +23,14 @@ class PersonForm(forms.ModelForm):
         exclude = ('date')
 
 class SpaceForm(forms.ModelForm):
-    """Form for person"""
+    """Form for space"""
     class Meta:
         model = Space
         exclude = ('admin')
+
+class SpaceFromtxtForm(forms.Form):
+    """Form for txt file"""
+    file = forms.FileField(_('File'))
 
 class PollGenerationForm(forms.Form):
     space = forms.ModelChoiceField(queryset=Space.objects.none())
